@@ -10,8 +10,10 @@ from flask import Blueprint, g, render_template
 
 index = Blueprint('home', __name__)
 
+
 PAGE_SIZE = 3
 FORBIDDEN_USERS = ('blog',)
+
 
 class Repo(object):
     """Repo!"""
@@ -44,7 +46,7 @@ def search_topsy(term, window):
             )
 
 
-def get_repo_meta(user, repo):
+def fetch_repo_meta(user, repo):
     url = 'https://api.github.com/repos/{0}/{1}'.format(user, repo)
 
     r = requests.get(url)
@@ -52,17 +54,20 @@ def get_repo_meta(user, repo):
 
     return meta
 
+
 def get_day():
-    return get_repos_for('day')
+    return fetch_repos_for('day')
+
 
 def get_week():
-    return get_repos_for('week')
+    return fetch_repos_for('week')
+
 
 def get_month():
-    return get_repos_for('month')
+    return fetch_repos_for('month')
 
 
-def get_repos_for(window):
+def fetch_repos_for(window):
     results = []
 
     for result in search_topsy('github.com', window[0]):
@@ -76,7 +81,7 @@ def get_repos_for(window):
                 repo.user = url[0]
                 repo.name = url[1]
 
-                meta = get_repo_meta(repo.user, repo.name)
+                meta = fetch_repo_meta(repo.user, repo.name)
 
                 repo.description = meta.get('description', '')
                 repo.watchers = meta.get('watchers', None)
