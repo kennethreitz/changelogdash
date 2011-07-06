@@ -5,6 +5,7 @@ from operator import attrgetter
 
 import otter
 import requests
+import redi
 from flask import Blueprint, g, render_template
 
 
@@ -55,23 +56,25 @@ def fetch_repo_meta(user, repo):
     return meta
 
 
-def get_day():
-    return fetch_repos_for('day')
+def get_window(window):
+    repos = redi.s.reflogdash._(window, 'list')
+
+    return repos[0] or []
 
 
-def get_week():
-    return fetch_repos_for('week')
 
+def store_window(window):
+    repos =  fetch_repos_for(window)
 
-def get_month():
-    return fetch_repos_for('month')
+    r_repos = redi.s.reflogdash._(window, 'list')
+    r_repos.lpush(repos)
 
 
 def fetch_repos_for(window):
     results = []
 
     for result in search_topsy('github.com', window[0]):
-        # print result
+
         if result.get('url').startswith('https://github.com/'):
 
             url = result.get('url').replace('https://github.com/', '').split('/')
@@ -85,29 +88,28 @@ def fetch_repos_for(window):
 
                 repo.description = meta.get('description', '')
                 repo.watchers = meta.get('watchers', None)
-                repo.hits = result.get('hits')
-
+                repo.hits = result.get('hits', None)
 
                 if repo.user not in FORBIDDEN_USERS:
                     if repo.name not in [r.name for r in results]:
                         results.append(repo)
 
-    results = sorted(results, key=attrgetter('hits'), reverse=True)
-
-    # return [r.__dict__ for r in results]
-    return results
+    return sorted(results, key=attrgetter('hits'), reverse=True)
 
 
 
 @index.route('/')
-def get_index():
+def view_index():
     return render_template('index.html',
-        day=get_day(),
-        week=get_week(),
-        month=get_month(),
+        day=get_window('day'),
+        week=get_window('week'),
+        month=get_window('month'),
     )
 
 
-@index.route('/test')
-def get_test():
-    return str(get_week())
+@index.route('/sync')
+def view_sync_url():
+    for window in ('day', 'week', 'month'):
+        store_window(window)
+
+    return '\o/'
