@@ -16,7 +16,7 @@ import redi
 from flaskext.script import Manager
 
 from dash import app, g, redis_connect
-
+from dash.views.index import view_sync_url
 
 manager = Manager(app)
 
@@ -33,7 +33,7 @@ def clear_db():
 
 @manager.command
 def sync():
-    pass
+    view_sync_url()
 
 
 if __name__ == '__main__':
