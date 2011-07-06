@@ -1,0 +1,8 @@
+clint
+python-otter
+redi==0.0.8b
+requests
+redis
+Flask
+Flask-Script
+Flask-Cache
