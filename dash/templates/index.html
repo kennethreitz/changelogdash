@@ -42,22 +42,16 @@
             <p>The most popular repos for the past day:</p>
 
             <ul class="square">
-                <li>
-                    <strong><a>kennethreitz/tablib</a></strong>:
-                    Elegant scaling from a browser to tablets to mobile.
-                </li>
-                <li>
-                    <strong><a>kennethreitz/tablib</a></strong>:
-                    Elegant scaling from a browser to tablets to mobile.
-                </li>
-                <li>
-                    <strong><a>kennethreitz/tablib</a></strong>:
-                    Elegant scaling from a browser to tablets to mobile.
-                </li>
-                <li>
-                    <strong><a>kennethreitz/tablib</a></strong>:
-                    Elegant scaling from a browser to tablets to mobile.
-                </li>
+
+                {% for repo in week %}
+
+                    <li>
+                        <strong><a href="{{ repo.url }}">{{ repo.user }}/{{ repo.name }}</a></strong>:
+                        {{ repo.description }}
+                        {{ repo.hits }}|{{ repo.watchers }}
+                    </li>
+
+                {% endfor %}
 
             </ul>
 
