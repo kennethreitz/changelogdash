@@ -113,3 +113,8 @@ def view_sync_url():
         store_window(window)
 
     return '\o/'
+
+
+@index.route('/debug')
+def view_debug():
+    return str(g.r.keys('*'))
