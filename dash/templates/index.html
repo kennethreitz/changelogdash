@@ -27,9 +27,6 @@
 </head>
 <body>
 
-
-    <!-- Delete everything in this .container and get started on your own site! -->
-
     <div class="container">
         <div class="sixteen columns">
             <h1 class="remove-bottom" style="margin-top: 40px">Reflog Dashboard</h1>
@@ -38,8 +35,8 @@
         </div>
 
         <div class="one-third column">
-            <h3>Last Day</h3>
-            <p>The most popular repos for the past day:</p>
+            <h3>Today</h3>
+            <p>The most talked about repos today:</p>
 
             <ul class="square">
 
@@ -58,7 +55,7 @@
         </div>
         <div class="one-third column">
             <h3>Week</h3>
-            <p>The most popular repos for the past week:</p>
+            <p>Hottest repos for the past week:</p>
             <ul class="square">
                 {% for repo in week %}
 
@@ -72,8 +69,8 @@
             </ul>
         </div>
         <div class="one-third column">
-            <h3>Month</h3>
-            <p>The most popular repos for the past month:</p>
+            <h3>Lunar Cycle</h3>
+            <p>The most popular repos this month:</p>
             <ul class="square">
                 {% for repo in month %}
 
