@@ -12,8 +12,3 @@ Powered by
 * `ep.io <http://ep.io>`_
 * `skeleton <https://github.com/dhgamache/Skeleton>`_
 
-Note
-----
-
-ep.io's redis instances are freaking out, so if there no repos listed,
-that's why.
