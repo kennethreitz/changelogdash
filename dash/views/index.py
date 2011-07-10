@@ -89,7 +89,11 @@ def fetch_repos_for(window):
                 repo.description = meta.get('description', '')
                 repo.watchers = meta.get('watchers', None)
                 repo.hits = result.get('hits', None)
-                repo.lang = result.get('language', '').lower() or None
+                try:
+                    repo.lang = meta.get('language').lower()
+                except AttributeError:
+                    pass
+
 
                 if repo.user not in FORBIDDEN_USERS:
                     if repo.name not in [r.name for r in results]:
