@@ -24,6 +24,7 @@ class Repo(object):
         self.description = None
         self.watchers = None
         self.hits = None
+        self.lang = None
 
     @property
     def url(self):
@@ -62,7 +63,6 @@ def get_window(window):
     return repos[0] or []
 
 
-
 def store_window(window):
     repos =  fetch_repos_for(window)
 
@@ -89,6 +89,7 @@ def fetch_repos_for(window):
                 repo.description = meta.get('description', '')
                 repo.watchers = meta.get('watchers', None)
                 repo.hits = result.get('hits', None)
+                repo.lang = result.get('language', '').lower() or None
 
                 if repo.user not in FORBIDDEN_USERS:
                     if repo.name not in [r.name for r in results]:

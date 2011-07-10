@@ -42,7 +42,7 @@
 
                 {% for repo in day %}
 
-                    <li>
+                    <li class="repo lang-{{ repo.lang }}">
                         <strong><a href="{{ repo.url }}">{{ repo.user }}/{{ repo.name }}</a></strong>:
                         {{ repo.description }}
                         {{ repo.hits }}|{{ repo.watchers }}
@@ -59,7 +59,7 @@
             <ul class="square">
                 {% for repo in week %}
 
-                    <li>
+                    <li class="repo lang-{{ repo.lang }}">
                         <strong><a href="{{ repo.url }}">{{ repo.user }}/{{ repo.name }}</a></strong>:
                         {{ repo.description }}
                         {{ repo.hits }}|{{ repo.watchers }}
@@ -74,7 +74,7 @@
             <ul class="square">
                 {% for repo in month %}
 
-                    <li>
+                    <li class="repo lang-{{ repo.lang }}">
                         <strong><a href="{{ repo.url }}">{{ repo.user }}/{{ repo.name }}</a></strong>:
                         {{ repo.description }}
                         {{ repo.hits }}|{{ repo.watchers }}
