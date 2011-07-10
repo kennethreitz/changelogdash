@@ -335,11 +335,17 @@
 
 
 .hilighted {
-	background-color: yellow;
+	background-color: #FFF6A9;
 	-webkit-transition: all .6s ease-in-out;
+	border-radius: 5px;
 }
 
 .dehilighted {
-	background-color: white;
+	background-color: transparent;
 	-webkit-transition: all .6s ease-in-out;
+}
+
+.repo {
+	padding: 2px 7px;
+	margin: 4px 0;
 }
