@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import json
 from operator import attrgetter
 
@@ -8,6 +9,8 @@ import requests
 import redi
 from flask import Blueprint, g, render_template
 
+
+TOPSY_KEY = os.environ['TOPSY_KEY']
 
 index = Blueprint('home', __name__)
 
@@ -37,7 +40,7 @@ class Repo(object):
 def search_topsy(term, window):
     for page in range(PAGE_SIZE):
 
-        search = otter.Resource('search')
+        search = otter.Resource('search', apikey=TOPSY_KEY)
         search(q=term, window=window, offset=page*10)
 
         for link in search.response.list:
