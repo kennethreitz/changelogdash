@@ -7,3 +7,4 @@ python-otter==0.1.0
 redi==0.0.8b
 requests==0.5.0
 redis==2.7.4
+gunicorn
