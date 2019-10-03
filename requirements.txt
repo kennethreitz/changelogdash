@@ -7,7 +7,7 @@ Werkzeug==0.6.2
 argparse==1.2.1
 distribute==0.6.31
 gunicorn==0.17.4
-paramiko==1.10.1
+paramiko==2.0.9
 pycrypto==2.6
 python-otter==0.1.0
 redi==0.0.8b
