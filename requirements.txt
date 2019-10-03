@@ -6,7 +6,7 @@ Jinja2==2.5.5
 Werkzeug==0.6.2
 argparse==1.2.1
 distribute==0.6.31
-gunicorn==0.17.4
+gunicorn==19.5.0
 paramiko==1.10.1
 pycrypto==2.6
 python-otter==0.1.0
